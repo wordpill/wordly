@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Free Online Word Counter — count words, characters, sentences and paragraphs instantly. Perfect for writers, students and content creators." />
+  <title>Free Online Word Counter — Count Words & Characters Instantly</title>
+
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0f172a;
+      --accent-2:#0b84ff;
+      --radius:12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: light;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:var(--bg);
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 16px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      width:100%;
+      max-width:920px;
+      background:transparent;
+      margin: 12px auto;
+    }
+
+    header{
+      margin-bottom:18px;
+      text-align:left;
+    }
+    .brand{
+      font-weight:700;
+      font-size:20px;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+    h1{
+      margin:8px 0 6px;
+      font-size:32px; /* Optimized: Larger font for better hierarchy */
+      color:var(--accent);
+      line-height:1.08;
+    }
+    p.lead{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:15px;
+      max-width:900px;
+      line-height:1.65; /* Optimized: Increased line height for readability */
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow: 0 6px 18px rgba(12,14,20,0.06);
+      padding:18px;
+      margin-bottom:14px;
+    }
+
+    /* layout */
+    .top-row{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      margin-bottom:12px;
+    }
+    @media (max-width:720px){
+      .top-row{flex-direction:column;}
+      /* Mobile optimization: Reduce textarea padding */
+      textarea#text{
+        padding:10px !important;
+      }
+    }
+
+    .editor{
+      flex:1;
+      min-height:210px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    textarea#text{
+      resize:vertical;
+      min-height:220px;
+      width:100%;
+      border-radius:10px;
+      border:1px solid #e6e9ef;
+      padding:14px;
+      font-size:15px;
+      line-height:1.5;
+      color:var(--accent);
+      background:transparent;
+      box-sizing:border-box;
+      outline:none;
+      transition:box-shadow .12s ease, border-color .12s ease;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+    textarea#text:focus{
+      border-color:var(--accent-2);
+      box-shadow:0 6px 18px rgba(11,132,255,0.06);
+    }
+
+    .controls{
+      display:flex;
+      gap:8px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    button{
+      background:#111827;
+      color:#fff;
+      border:0;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+      /* Optimized: Hover effect for better interactivity */
+      transition: all .15s ease;
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    button.secondary{
+      background:#eef2ff;
+      color:var(--accent);
+      border:1px solid #e6e9ef;
+    }
+    button.ghost{
+      background:transparent;
+      border:1px dashed #e6e9ef;
+      color:var(--accent);
+    }
+    .stats{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-left:10px;
+      flex-wrap:wrap;
+    }
+    .stat{
+      background:#f8fafc;
+      border-radius:8px;
+      padding:8px 10px;
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid #eef2f6;
+    }
+
+    /* sidebar */
+    .sidebar{
+      width:260px;
+      min-width:220px;
+      flex-shrink:0;
+    }
+    @media (max-width:720px){
+      .sidebar{width:100%;}
+    }
+    .sidebar .card{padding:12px;}
+    .meta-list{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+    .meta-item{font-size:14px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .meta-item strong{color:var(--accent);font-weight:600}
+
+    .ad-placeholder{
+      margin-top:14px;
+      border-radius:8px;
+      background:linear-gradient(180deg,#f3f6ff,#ffffff);
+      border:1px dashed #dbeafe;
+      height:90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#1f2937;
+      font-size:13px;
+      font-style: italic;
+    }
+
+    footer{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    .seo-note{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">Wordly</div> <!-- Retained: Simple & word-related, easy to remember -->
+      <h1>Free Online Word Counter — Count Words & Characters Instantly</h1>
+      <p class="lead">Need a quick way to check your word or character count? This free online Word Counter instantly counts words, characters, sentences, and paragraphs in your text. It’s perfect for students, writers, and content creators who need accurate results fast. Simply type or paste your text into the box below — it’s clean, fast, and easy to use — no login required.</p>
+    </header>
+
+    <div class="top-row">
+      <div class="card editor" aria-live="polite">
+        <label for="text" style="font-size:13px;color:var(--muted);margin-bottom:8px;display:block">Paste your text here</label>
+        <textarea id="text" placeholder="Type or paste your text here (e.g., essays, blog posts, social media captions)..."></textarea>
+
+        <div class="controls" style="align-items:center;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button id="copyBtn" title="Copy text">Copy</button>
+            <button id="downloadBtn" class="secondary" title="Download as .txt">Download .TXT</button>
+            <button id="clearBtn" class="ghost" title="Clear text">Clear</button>
+          </div>
+
+          <div class="stats" aria-hidden="false" style="margin-left:auto;">
+            <div class="stat">Words: <strong id="wordCount">0</strong></div>
+            <div class="stat">Characters: <strong id="charCount">0</strong></div>
+            <div class="stat">Sentences: <strong id="sentCount">0</strong></div>
+            <div class="stat">Paragraphs: <strong id="paraCount">0</strong></div>
+          </div>
+        </div>
+
+        <div class="seo-note">Tip: Use the Download button to save your text or Copy to quickly paste into articles and editors.</div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h2 style="margin:0 0 8px 0;font-size:16px;color:var(--accent)">Why Choose Our Word Counter?</h2>
+          <p style="margin:0;color:var(--muted);font-size:14px;line-height:1.45">
+            Our Word Counter tool works seamlessly in your browser and keeps your text private. Whether you’re writing essays, blog posts, academic papers, or social media captions, it helps you stay within word limits and track your writing progress. Designed for productivity, accuracy, and simplicity.
+          </p>
+
+          <div class="meta-list">
+            <div class="meta-item"><span>Real-time stats</span><strong>Instant</strong></div>
+            <div class="meta-item"><span>No account needed</span><strong>Private</strong></div>
+            <div class="meta-item"><span>Works offline</span><strong>Client-side</strong></div>
+          </div>
+
+          <div class="ad-placeholder" id="adSlot" aria-hidden="true">
+            <!-- AD PLACEHOLDER: Replace this div with your AdSense / ad network code when ready -->
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3 style="margin:0 0 8px 0;font-size:15px;color:var(--accent)">Quick Actions</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button id="lowercase" class="secondary" title="Convert text to lowercase">lowercase</button>
+            <button id="uppercase" class="secondary" title="Convert text to uppercase">UPPERCASE</button>
+            <button id="trim" class="secondary" title="Remove extra spaces">Trim spaces</button>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="font-size:14px;color:var(--muted)">© <span id="year"></span> Wordly — Simple online tools for writers.</div>
+        <div style="font-size:13px;color:var(--muted)">Privacy: This tool runs in your browser and does not send your text to any server.</div>
+        <div style="font-size:13px;color:var(--muted)"><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const textEl = document.getElementById('text');
+    const wordCountEl = document.getElementById('wordCount');
+    const charCountEl = document.getElementById('charCount');
+    const sentCountEl = document.getElementById('sentCount');
+    const paraCountEl = document.getElementById('paraCount');
+    const yearEl = document.getElementById('year');
+
+    yearEl.textContent = new Date().getFullYear();
+
+    function updateCounts(){
+      const text = textEl.value || '';
+      const chars = text.length;
+      charCountEl.textContent = chars;
+
+      const words = text.trim().split(/\s+/).filter(w => w.length>0);
+      const wordCount = (text.trim().length===0) ? 0 : words.length;
+      wordCountEl.textContent = wordCount;
+
+      const sentences = text.split(/[\.!\?]+/).map(s => s.trim()).filter(s => s.length>0);
+      sentCountEl.textContent = (text.trim().length===0) ? 0 : sentences.length;
+
+      const paragraphs = text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length>0);
+      paraCountEl.textContent = (text.trim().length===0) ? 0 : paragraphs.length;
+    }
+
+    updateCounts();
+    textEl.addEventListener('input', updateCounts);
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(textEl.value);
+        const old = document.getElementById('copyBtn').textContent;
+        document.getElementById('copyBtn').textContent = 'Copied!';
+        setTimeout(()=> document.getElementById('copyBtn').textContent = old, 1200);
+      } catch(e){
+        alert('Copy failed — please allow clipboard access or copy manually.');
+      }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', ()=> {
+      if(confirm('Clear all text?')){
+        textEl.value = '';
+        updateCounts();
+        textEl.focus();
+      }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', ()=> {
+      if(!textEl.value.trim()){
+        alert('Please enter text before downloading.');
+        return;
+      }
+      const blob = new Blob([textEl.value], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'text.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('lowercase').addEventListener('click', ()=> {
+      textEl.value = textEl.value.toLowerCase();
+      updateCounts();
+    });
+    document.getElementById('uppercase').addEventListener('click', ()=> {
+      textEl.value = textEl.value.toUpperCase();
+      updateCounts();
+    });
+    document.getElementById('trim').addEventListener('click', ()=> {
+      textEl.value = textEl.value.split('\n').map(l => l.replace(/\s+/g,' ').trim()).join('\n').trim();
+      updateCounts();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.ctrlKey && e.key === 'Enter'){
+        navigator.clipboard && navigator.clipboard.writeText(textEl.value);
+        const cb = document.getElementById('copyBtn');
+        const old = cb.textContent;
+        cb.textContent = 'Copied!';
+        setTimeout(()=> cb.textContent = old, 900);
+      }
+    });
+  </script>
+</body>
+</html>
